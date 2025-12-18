@@ -1,4 +1,4 @@
-// Auto-generated code. Do not edit.
+// Código generado automáticamente. No editar.
 namespace myImages {
 
     helpers._registerFactory("image", function(name: string) {
@@ -21,6 +21,106 @@ f f f c 3 c c c c 3 c f f f
 . 4 4 f 6 6 6 6 6 6 f 4 4 . 
 . . . . f f f f f f . . . . 
 . . . . f f . . f f . . . . 
+`;
+            case "image2":
+            case "miImagen":return img`
+.............6666...............
+..........666667766.6666........
+.........677777777767776........
+......66667775577757777666......
+.....677666675557557776777666...
+.....6776777775555577777766776..
+...66666777777775777777766666...
+.66667767777755757555777776776..
+6666777677775577557555777767766.
+.6667767777777775577777777767666
+.c6766777677777775777777677766..
+cc77666667777777777777777666666c
+cc76666677777777777777777766776c
+c6666776777777777777766677666776
+66667766667776777767767766766666
+ccc76677677776677766767776776ccc
+cc7766776777677677676667767766cc
+.666c676667677766667766666666cc.
+.ccc66676666776666677677666cccc.
+...ccc77c6767666676676677666ccc.
+...cc676c7766676677666666c666cc.
+....c6cc676c6677677c66c666ccc...
+....ccccc6c66667667cc6ccc6ccc...
+......ccccc66c66c66cccccccc.....
+.......cc.cc6c6ccc6cccc.cc......
+...........cccccccccc...........
+.............feeeeee............
+............feeeeeefe...........
+.........eeeeefeeeffee..........
+............ffffeef..ee.........
+...............fee..............
+................e...............
+`;
+            case "image4":
+            case "miImagen0":return img`
+5 7 5 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 5 7 7 7 7 7 7 7 7 7 7 
+7 7 7 5 7 5 5 7 7 7 7 7 5 7 7 7 
+7 7 6 5 5 7 5 7 5 5 7 7 7 7 7 7 
+7 7 7 6 5 7 7 5 5 6 7 7 7 7 7 7 
+7 7 7 7 6 7 7 5 6 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 5 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 5 5 7 7 7 
+7 7 7 7 7 7 7 7 7 7 5 5 6 7 7 7 
+7 7 7 7 7 7 7 7 5 5 7 6 7 7 7 7 
+7 7 7 7 7 7 7 7 7 5 5 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 
+7 7 5 7 7 7 7 7 7 7 7 7 7 7 7 5 
+`;
+            case "image5":
+            case "miImagen1":return img`
+..cccccccccccccccccccccccccccc..
+.bddddddddddddddddddddddddddddb.
+cddddddddddddddddddddddddddddddc
+cbbb3ddd33d3dddd3333dddd3d333bbc
+cddddddddddddddddddddddddddddddc
+cddddddddddddddddddddddddddddddc
+cddddddddddddddddddddddddddddddc
+cbb33dddd3bb33d33dd33ddd33333bbc
+cddddddddddddddddddddddddddddddc
+cddddddddddddddddddddddddddddddc
+cddddddddddddddddddddddddddddddc
+cb333dddd3db3dddddddd33333ddd3bc
+cddddddddddddddddddddddddddddddc
+cddddddddddddddddddddddddddddddc
+cddddddddddddddddddddddddddddddc
+cbbbbbb3333333dddd333d3dddd33bbc
+cddddddddddddddddddddddddddddddc
+cbddddddddddddddddddddddddddddbc
+cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc
+cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc
+.cccccccccccccccccccccccccccccc.
+..cbbc....................cbbc..
+..c33c....................c33c..
+...cc......................cc...
+`;
+            case "image6":
+            case "miImagen2":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
 `;
         }
         return null;
@@ -252,4 +352,4 @@ f f f c 3 c c c c c c f . .
     })
 
 }
-// Auto-generated code. Do not edit.
+// Código generado automáticamente. No editar.
