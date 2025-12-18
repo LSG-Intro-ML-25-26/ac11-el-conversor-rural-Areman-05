@@ -1,4 +1,28 @@
 {
+    "transparency16": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true
+    },
+    "map1": {
+        "id": "map1",
+        "mimeType": "application/mkcd-tilemap",
+        "data": "MTAxMDAwMTAwMDBhMGEwYTBhMGEwYTBhMGEwYTBhMGEwYTBhMGEwYTBhMGEwMjAyMDEwMTAxMDIwMTAyMDEwMTAxMDIwMTAyMGEwYTAyMDIwMjAyMDIwMjAyMDIwMjAyMDIwMjAyMDIwYTBhMDIwMTA5MDEwMjAxMDIwMjAyMDEwMjAyMDIwMjBhMGEwMjA5MDEwMjAyMDIwMTAyMDIwMjAyMDIwMjAyMGEwYTAyMDEwOTAxMDEwMjAyMDEwMTAyMDIwMjAyMDEwYTBhMDIwMTA5MDEwMjAyMDEwMjAyMDIwMTAxMDkwMjBhMGEwMjA5MDEwMzA4MDgwODA4MDgwODA3MDEwMTAyMGEwYTAyMDkwMjA1MDQwNDA0MDQwNDA0MDYwMTAxMDIwYTBhMDEwOTAxMDEwOTA5MDkwOTAxMDEwOTAxMDkwMTBhMGEwMjAxMDEwOTAxMDkwOTAxMDEwOTAxMDkwOTAxMGEwYTA5MDkwOTA5MDEwMTA5MDkwMTAxMDEwMTA5MDIwYTBhMDEwOTA5MDEwOTA5MDkwOTA5MDEwOTA5MDkwMjBhMGEwOTAxMDEwOTA5MDEwMTAxMDEwOTAxMDEwOTAxMGEwYTAxMDkwOTA5MDkwOTAxMDEwOTA5MDkwOTAyMDIwYTBhMGEwYTBhMGEwYTBhMGEwYTBhMGEwYTBhMGEwYTBhMjIyMjIyMjIyMjIyMjIyMjAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMjIyMjIyMjIyMjIyMjIyMg==",
+        "tileset": [
+            "myTiles.transparency16",
+            "sprites.castle.tileGrass2",
+            "sprites.castle.tileGrass1",
+            "sprites.castle.tilePath1",
+            "sprites.castle.tilePath8",
+            "sprites.castle.tilePath7",
+            "sprites.castle.tilePath9",
+            "sprites.castle.tilePath3",
+            "sprites.castle.tilePath2",
+            "sprites.castle.tileGrass3",
+            "sprites.builtin.forestTiles1"
+        ],
+        "displayName": "map"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
