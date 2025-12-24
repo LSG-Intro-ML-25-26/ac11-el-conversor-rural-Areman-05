@@ -1,75 +1,82 @@
 /**
  * PROJECTE: EL CONVERSOR RURAL - ALCUBILLA DE AVELLANEDA
- * REQUERIMENTS: POO, snake_case, Gestió d'errors, Modularitat.
+ * DESCRIPCIÓ: Sistema d'intercanvi de llenya per productes rurals.
+ * REQUERIMENTS COMPLERTS: POO, Modularitat, snake_case, Gestió d'errors, Menú de sortida.
  */
 
-// --- 1. CONFIGURACIÓ DE TIPUS (KIND) ---
+// --- 1. CONFIGURACIÓ DE TIPUS I CONSTANTS ---
 let KIND_SCENERY = SpriteKind.create()
 let KIND_TREE = SpriteKind.create()
 let KIND_NPC = SpriteKind.create()
 
-// --- 2. CLASSE PRINCIPAL: MERCAT RURAL (POO) ---
+// --- 2. CLASSE MERCAT RURAL (Programació Orientada a Objectes) ---
 class MercatRural {
-    // Tasas de conversión: madera por 1 unidad/kg de producto
-    // Patata: 2kg llenya = 1.5kg patata -> 1kg patata = 2/1.5 = 1.333
-    private taxa_gallina: number = 6
-    private taxa_patata: number = 1.3333
-    private taxa_cabra: number = 5
-    private taxa_ous: number = 0.25 // 3kg llenya = 12 ous -> 1 ou = 3/12 = 0.25
-    private taxa_cavall: number = 12
+    // Definició de taxes segons l'enunciat
+    private taxa_gallina: number = 6      // 6kg = 1 gallina
+    private taxa_patata: number = 1.3333  // 2kg = 1.5kg patata -> 1kg = 1.33kg llenya
+    private taxa_cabra: number = 5        // 5kg = 1 cabra
+    private taxa_ous: number = 0.25       // 3kg = 12 ous -> 1 ou = 0.25kg llenya
+    private taxa_cavall: number = 12      // 12kg = 1 cavall
 
     constructor() { }
 
     /**
-     * Calcula el cost total en llenya i gestiona errors d'entrada.
+     * Gestiona la lògica de l'intercanvi i el control d'errors de l'usuari.
      */
-    public gestionar_intercanvi(opcio: number, quantitat: number): void {
-        let nom_producte = ""
-        let cost_unitari = 0
+    public processar_compra(opcio: number, quantitat: number): void {
+        let producte = ""
+        let cost_per_unitat = 0
         let es_animal = false
 
-        // Selecció de producte segons menú
-        if (opcio == 1) { nom_producte = "Gallina"; cost_unitari = this.taxa_gallina; es_animal = true; }
-        else if (opcio == 2) { nom_producte = "Patata (kg)"; cost_unitari = this.taxa_patata; es_animal = false; }
-        else if (opcio == 3) { nom_producte = "Cabra"; cost_unitari = this.taxa_cabra; es_animal = true; }
-        else if (opcio == 4) { nom_producte = "Ous"; cost_unitari = this.taxa_ous; es_animal = false; }
-        else if (opcio == 5) { nom_producte = "Cavall"; cost_unitari = this.taxa_cavall; es_animal = true; }
+        // Assignació de dades segons l'opció del menú
+        switch (opcio) {
+            case 1: producte = "Gallina"; cost_per_unitat = this.taxa_gallina; es_animal = true; break;
+            case 2: producte = "kg de Patates"; cost_per_unitat = this.taxa_patata; es_animal = false; break;
+            case 3: producte = "Cabra"; cost_per_unitat = this.taxa_cabra; es_animal = true; break;
+            case 4: producte = "Ous frescos"; cost_per_unitat = this.taxa_ous; es_animal = false; break;
+            case 5: producte = "Cavall"; cost_per_unitat = this.taxa_cavall; es_animal = true; break;
+        }
 
-        // --- CONTROL D'ERRORS (Input Validation) ---
+        // --- CONTROL D'ERRORS (Segons Enunciat) ---
+        // 1. Quantitats negatives o zero
         if (quantitat <= 0) {
-            game.showLongText("ERROR: La quantitat ha de ser positiva. No acceptem RTX 5090!", DialogLayout.Bottom)
+            game.showLongText("ERROR: Només acceptem quantitats positives. No volem trastos ni targetes RTX 5090!", DialogLayout.Bottom)
             return
         }
 
+        // 2. Animals sencers (no es permeten decimals en animals)
         if (es_animal && quantitat % 1 !== 0) {
-            game.showLongText("ERROR: Els animals s'han d'intercanviar sencers i vius!", DialogLayout.Bottom)
+            game.showLongText("ERROR: Els animals s'han d'intercanviar sencers i vius. No tallem potes ni caps!", DialogLayout.Bottom)
             return
         }
 
-        let cost_total = Math.round(cost_unitari * quantitat * 100) / 100
+        // Càlcul del cost final
+        let cost_total = Math.round(cost_per_unitat * quantitat * 100) / 100
 
-        // Verificació de saldo (llenya disponible)
+        // 3. Verificació de saldo de llenya
         if (info.score() >= cost_total) {
             info.changeScoreBy(-cost_total)
-            game.showLongText("ÈXIT: Has intercanviat " + cost_total + "kg de llenya per " + quantitat + " " + nom_producte, DialogLayout.Center)
+            music.baDing.play()
+            game.showLongText("INTERCANVI FET: Necessitaves " + cost_total + "kg de llenya per " + quantitat + " " + producte + ".", DialogLayout.Center)
         } else {
             let falta = Math.round((cost_total - info.score()) * 100) / 100
-            game.showLongText("FALTEN RECURSOS: Necessites " + falta + "kg més de llenya.", DialogLayout.Bottom)
+            game.showLongText("FALTEN RECURSOS: Aquest canvi requereix " + cost_total + "kg. Et falten " + falta + "kg.", DialogLayout.Bottom)
         }
     }
 }
 
-// --- 3. VARIABLES I ESTATS DEL JOC ---
+// --- 3. VARIABLES GLOBALS ---
 let nena: Sprite = null
 let mesa: Sprite = null
 let mercader: Sprite = null
-let mercat = new MercatRural()
+let mercat_app = new MercatRural()
 
-// --- 4. FUNCIONS MODULARS (Snake_case) ---
+// --- 4. FUNCIONS DE L'ENTORN (Modularitat) ---
 
-function configurar_escena() {
+function inicialitzar_joc() {
     tiles.setCurrentTilemap(tilemap`map`)
 
+    // Creació d'entorn
     mesa = sprites.create(assets.image`miImagen1`, KIND_SCENERY)
     tiles.placeOnTile(mesa, tiles.getTileLocation(8, 8))
     mesa.y += 8
@@ -77,82 +84,115 @@ function configurar_escena() {
     mercader = sprites.create(assets.image`miImagen2`, KIND_NPC)
     tiles.placeOnTile(mercader, tiles.getTileLocation(8, 7))
 
+    // Configuració Jugador
     nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
     tiles.placeOnTile(nena, tiles.getTileLocation(8, 10))
     scene.cameraFollowSprite(nena)
     controller.moveSprite(nena)
+
+    // Puntuació = kg de llenya
     info.setScore(0)
+
+    // Generació bosc inicial
+    for (let i = 0; i < 8; i++) {
+        generar_arbre_aleatori()
+    }
 }
 
-function crear_arbol_aleatori() {
+function generar_arbre_aleatori() {
     if (sprites.allOfKind(KIND_TREE).length < 12) {
-        let arbol = sprites.create(assets.image`miImagen`, KIND_TREE)
+        let arbre = sprites.create(assets.image`miImagen`, KIND_TREE)
         let col = randint(1, 14)
         let row = randint(1, 14)
 
         if (!tiles.tileAtLocationIsWall(tiles.getTileLocation(col, row))) {
-            // Evitem zona central (camí)
+            // Respectar el camí central
             if (Math.abs(col - 8) > 2 || Math.abs(row - 8) > 2) {
-                tiles.placeOnTile(arbol, tiles.getTileLocation(col, row))
+                tiles.placeOnTile(arbre, tiles.getTileLocation(col, row))
             } else {
-                arbol.destroy()
+                arbre.destroy()
             }
         } else {
-            arbol.destroy()
+            arbre.destroy()
         }
     }
 }
 
-function mostrar_menu_intercanvi() {
-    // GUI de selecció segons requeriment
-    let producte_id = game.askForNumber("1:Gal 2:Pat 3:Cab 4:Ou 5:Cav", 1)
-    if (producte_id >= 1 && producte_id <= 5) {
-        let q = game.askForNumber("Quantes unitats/kg vols?", 3)
-        mercat.gestionar_intercanvi(producte_id, q)
+/**
+ * Menú principal interactiu (Es queda en execució fins que se selecciona Sortir)
+ */
+function obrir_menu_principal() {
+    let sortir = false
+    while (sortir == false) {
+        // GUI de selecció segons requeriment
+        let tria = game.askForNumber("1:Gal 2:Pat 3:Cab 4:Ou 5:Cav 0:Sortir", 1)
+
+        if (tria == 0) {
+            sortir = true
+            game.showLongText("Gràcies per visitar el Mercat d'Alcubilla!", DialogLayout.Bottom)
+        } else if (tria >= 1 && tria <= 5) {
+            let quantitat = game.askForNumber("Quantes unitats/kg vols?", 3)
+            mercat_app.processar_compra(tria, quantitat)
+        } else {
+            game.showLongText("Opció no vàlida al mercat.", DialogLayout.Bottom)
+        }
     }
 }
 
-// --- 5. ESDEVENIMENTS (CONTROLS) ---
+// --- 5. ESDEVENIMENTS DE CONTROL ---
 
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (nena.overlapsWith(mesa) || nena.overlapsWith(mercader)) {
-        mostrar_menu_intercanvi()
+        obrir_menu_principal()
     }
 })
 
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    for (let arbol of sprites.allOfKind(KIND_TREE)) {
-        if (nena.overlapsWith(arbol)) {
-            arbol.destroy(effects.disintegrate, 200)
-            info.changeScoreBy(5) // Cada arbre dona 5kg de llenya
-            nena.sayText("+5kg Llenya", 500)
+    for (let arbre of sprites.allOfKind(KIND_TREE)) {
+        if (nena.overlapsWith(arbre)) {
+            // Efecte de tala
+            nena.sayText("Talant...", 300)
+            pause(300)
+            arbre.destroy(effects.disintegrate, 200)
+            info.changeScoreBy(5)
+            music.smallCrash.play()
+            break
         }
     }
 })
 
-// --- 6. BUCLE PRINCIPAL I ACTUALITZACIONS ---
+// --- 6. ACTUALITZACIÓ CONSTANT (onUpdate) ---
 
-configurar_escena()
+inicialitzar_joc()
 
-// Spawner inicial
-for (let i = 0; i < 8; i++) {
-    crear_arbol_aleatori()
-}
-
-// Missatge de proximitat
 game.onUpdate(function () {
-    let dist = Math.sqrt(Math.pow(nena.x - mercader.x, 2) + Math.pow(nena.y - mercader.y, 2))
-    if (dist < 40) {
-        mercader.sayText("A: Intercanviar productes", 100)
+    // Gestió de missatges emergents de proximitat
+    let d_mercader = Math.sqrt(Math.pow(nena.x - mercader.x, 2) + Math.pow(nena.y - mercader.y, 2))
+
+    if (d_mercader < 40) {
+        mercader.sayText("A: Comprar", 100)
+    }
+
+    // Missatge de tala per als arbres propers
+    let prop_d_arbre = false
+    for (let a of sprites.allOfKind(KIND_TREE)) {
+        if (Math.sqrt(Math.pow(nena.x - a.x, 2) + Math.pow(nena.y - a.y, 2)) < 30) {
+            prop_d_arbre = true
+            break
+        }
+    }
+
+    if (prop_d_arbre) {
+        nena.sayText("Prem B per talar", 100)
     }
 })
 
-// Regeneració de bosc cada 5 segons
+// Regeneració automàtica del bosc
 game.onUpdateInterval(5000, function () {
-    crear_arbol_aleatori()
+    generar_arbre_aleatori()
 })
 
-// Animacions (Modularitzat)
+// --- 7. ANIMACIONS DE MOVIMENT ---
 controller.up.onEvent(ControllerButtonEvent.Pressed, () => animation.runImageAnimation(nena, assets.animation`nena-animation-up`, 500, false))
 controller.down.onEvent(ControllerButtonEvent.Pressed, () => animation.runImageAnimation(nena, assets.animation`nena-animation-down`, 500, false))
 controller.left.onEvent(ControllerButtonEvent.Pressed, () => animation.runImageAnimation(nena, assets.animation`nena-animation-left`, 500, false))
