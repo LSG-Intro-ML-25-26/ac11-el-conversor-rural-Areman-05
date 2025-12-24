@@ -2,22 +2,20 @@
 KIND_SCENERY = SpriteKind.create()
 KIND_TREE = SpriteKind.create()
 KIND_NPC = SpriteKind.create()
-# --- 2. DADES DEL MERCAT (Trueque) ---
-# Fem servir llistes globals perquè el traductor de Python ho entengui bé
+# --- 2. DADES DEL MERCAT ---
 llista_taxes = [6, 1.3333, 5, 0.25, 12]
 llista_noms = ["Gallina", "kg de Patates", "Cabra", "Ous frescos", "Cavall"]
 llista_animals = [True, False, True, False, True]
 """
 
 Funció principal per gestionar l'intercanvi de productes.
-Substitueix la classe per garantir compatibilitat amb Python.
 
 """
 def processar_compra(index: number, q: number):
     nom_producte = llista_noms[index]
     taxa_producte = llista_taxes[index]
     es_animal = llista_animals[index]
-    # Gestió d'errors per als veïns "graciosos"
+    # Gestió d'errors
     if q <= 0:
         game.show_long_text("Ei! Només acceptem canvis positius. No volem trastos!",
             DialogLayout.BOTTOM)
