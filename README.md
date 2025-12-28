@@ -11,24 +11,24 @@
 * [cite_start]**Control d'errors:** El sistema impedeix canvis negatius o d'animals que no estiguin sencers i vius[cite: 36].
 
 ## 🖼️ Evidències Gràfiques (Screenshots)
-[cite_start]A continuació es mostren les captures de pantalla del joc en funcionament segons els requeriments de l'activitat:
+
+A continuació es mostren les captures de pantalla del joc en funcionament segons els requeriments de l'activitat:
 
 ### 1. Sistema de tala de llenya
-![Acció de talar](Captura de pantalla 2025-12-28 174622.png)
+![Acció de talar](Captura%20de%20pantalla%202025-12-28%20174622.png)
 *Descripció: La protagonista detecta un arbre proper i apareix l'indicador per talar amb el botó B.*
 
 ### 2. Menú del Mercader (GUI)
-![Menú d'intercanvi](Captura de pantalla 2025-12-28 174730.png)
+![Menú d'intercanvi](Captura%20de%20pantalla%202025-12-28%20174730.png)
 [cite_start]*Descripció: Interfície on l'usuari selecciona el producte a adquirir[cite: 34].*
 
 ### 3. Confirmació de compra (Càlcul correcte)
-![Compra realitzada](Captura de pantalla 2025-12-28 174819.png)
+![Compra realitzada](Captura%20de%20pantalla%202025-12-28%20174819.png)
 [cite_start]*Descripció: El programa respon amb l'equivalent de quilos de llenya de pi corresponent al canvi[cite: 31, 32].*
 
 ### 4. Control de recursos insuficients
-![Recursos insuficients](Captura de pantalla 2025-12-28 174859.png)
-[cite_start]*Descripció: Gestió d'errors quan el veí no disposa de prou llenya per realitzar l'intercanvi[cite: 36].*
-
+![Recursos insuficients](Captura%20de%20pantalla%202025-12-28%20174859.png)
+[cite_start]*Descripció: Gestió d'errors quan el veí no disposa de prou llenya per realitzar l'intercanvi.*
 ---
 
 ## Com editar aquest projecte
